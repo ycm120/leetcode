@@ -1,6 +1,9 @@
 package com.ycm.test.hw;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +46,7 @@ public class Test12 {
 
 
 
-        String input = "5 4 3";
+        String input = "5 3 5";
         String[] arrays = input.split(" ");
         int count = test(arrays);
         System.out.println(count);
@@ -56,15 +59,16 @@ public class Test12 {
         if (animal1 <= animal2) {
             return 0;
         }
+        // 一次性把相同都带过去
+        if (capacity >= animal1 + animal2) {
+            return 1;
+        }
+        if (capacity >= animal1){
+            return 2;
+        }
         // 多一个情况下，只能一次性把相同都带过去。
         if (animal1 - animal2 == 1) {
-            if (capacity < animal1) {
-                return 0;
-            } else if (capacity >= animal1 + animal2) {
-                return 1;
-            } else {
-                return 2;
-            }
+            return 0;
         }
         int count = 0;
         int[] arrays2 = new int[animal1 + animal2];
@@ -88,7 +92,7 @@ public class Test12 {
                 animal1--;
             }
         }
-        System.out.println(arrays2);
+        System.out.println(Arrays.toString(arrays2));
         int left = 0;
         int right = capacity;
         int number1 = 0;

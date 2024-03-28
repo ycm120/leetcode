@@ -46,16 +46,7 @@ public class Test07 {
 
 
     public static Integer test(Integer start, Integer end) {
-        int number = 0;
-        for (int i = start; i <= end; i++) {
-            String binary = Integer.toBinaryString(i);
-            if(binary.contains("101")) {
-                System.out.println(binary);
-            } else {
-                number++;
-            }
-        }
-        return number;
+        return 0;
     }
 
 

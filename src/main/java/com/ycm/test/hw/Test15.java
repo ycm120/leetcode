@@ -57,70 +57,7 @@ public class Test15 {
      *
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String line1 = scanner.nextLine();
-        int lineSize = Integer.parseInt(line1);
-        List<Line> lineList = new ArrayList<>();
-        for(int i = 0; i < lineSize; i++) {
-            String line = scanner.nextLine();
-            String[] arrays = line.split(" ");
-            lineList.add(new Line(Integer.parseInt(arrays[0]), Integer.parseInt(arrays[1])));
-        }
-        List<Line> leftList = lineList.stream().sorted((lineOne, lineTwo) -> lineOne.left - lineTwo.left).toList();
-        System.out.println(leftList);
-        List<Line> rightList = lineList.stream().sorted((lineOne, lineTwo) -> lineTwo.right - lineOne.right).toList();
-        System.out.println(rightList);
-        int lineNum = 0;
-        int left = leftList.get(0).left;
-        int right = rightList.get(0).right;
-        int leftIndex = 0;
-        int rightIndex = 0;
-        while(true) {
-            int maxLeftRight = left;
-            Line leftLine = null;
-            for(int i = leftIndex; i < lineSize; i++) {
-                Line line = leftList.get(i);
-                if(left >= line.left) {
-                    if (maxLeftRight < line.right) {
-                        maxLeftRight = line.right;
-                        leftLine = line;
-                    }
-                } else {
-                    leftIndex = i;
-                    break;
-                }
-            }
-            int minleft = right;
-            Line rightLine = null;
-            for(int i = rightIndex; i < lineSize; i++) {
-                Line line = rightList.get(i);
-                if(right <= line.right) {
-                    if (minleft > line.left) {
-                        minleft = line.left;
-                        rightLine = line;
-                    }
-                } else {
-                    rightIndex = i;
-                    break;
-                }
-            }
-            if (leftLine.right >= rightLine.left) {
-                if (leftLine.left >= rightLine.left) {
-                    lineNum++;
-                    System.out.println("加1");
-                    break;
-                } else {
-                    lineNum += 2;
-                    System.out.println("加2");
-                    break;
-                }
-            } else {
-                lineNum += 2;
-                left = leftLine.right;
-                right = rightLine.left;
-                System.out.println("加2");
-            }
-        }
+
     }
 
 

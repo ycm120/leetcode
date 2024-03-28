@@ -36,60 +36,9 @@ public class Test01 {
      * @return
      */
     private static Integer test(String input) {
-        char[] chars1 = input.toCharArray();
-        Map<Character, Integer> countMap = new HashMap<>();
-        for (char c : chars1) {
-            countMap.put(c, countMap.getOrDefault(c, 0) + 1);
-        }
-
-        int neddOne = chars1.length / 4;
-        if (neddOne == countMap.get('A') && countMap.get('W') == neddOne && countMap.get('S') == neddOne && countMap.get('D') == neddOne) {
-            return 0;
-        }
-        int left = 0;
-        int right = 0;
-        int minLength = chars1.length;
-        countMap.put(chars1[0], countMap.getOrDefault(chars1[0], 0) - 1);
-        while(right < chars1.length && left < chars1.length) {
-            int maxCharCount = getMaxCharCount(countMap);
-            int size = right -left + 1;
-            int now = size - maxCharCount;
-            if (now >= 0 && now % 4 == 0) {
-                if (size == 1) {
-                    return 1;
-                }
-                minLength = Math.min(minLength, size);
-                countMap.put(chars1[left], countMap.getOrDefault(chars1[left], 0) + 1);
-                left++;
-            } else {
-                right++;
-                if (right < chars1.length) {
-                    countMap.put(chars1[right], countMap.getOrDefault(chars1[right], 0) - 1);
-                }
-            }
-        }
-        return minLength;
+        return 0;
     }
 
-    /**
-     * 获取 到达完全走位至少需要的字母数量， 窗口里满足窗口外
-     * 具体步骤如下：
-     * 1： 先获取map里最大的一个字符数量
-     * 2： 用最大的字符数量 * 4 再减去map里各个里字符的数量， 比如  A AAA, 窗口长度是是1,只有一个A， 剩下3个A
-     * 最大字符数是3 那么起码需要 3*4-3-0-0=9个数的窗口长度来填，才能保证完全走位
-     * 如果是AA AA ，左边的窗口是2， 右边最大char num是2， 对应: 2*4-2-0-0 = 6，6个数的窗口
-     * 如果是AAA A， 左边的窗口是3， 右边最大char num是1， 对应： 1*4- 1-0-0-0， 正好3个数的窗口
-     *
-     * @param charCountMap
-     * @return 返回到达完全走位至少需要的字母数量
-     */
-    public static int getMaxCharCount(Map<Character, Integer> charCountMap) {
-        int maxCount = 0;
-        for(Integer value : charCountMap.values()) {
-            maxCount = Math.max(maxCount, value);
-        }
-        return maxCount * 4 - charCountMap.getOrDefault('W', 0) - charCountMap.getOrDefault('A', 0)
-                - charCountMap.getOrDefault('S', 0) - charCountMap.getOrDefault('D', 0);
-    }
+
 
 }

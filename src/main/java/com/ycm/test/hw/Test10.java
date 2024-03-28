@@ -54,34 +54,7 @@ public class Test10 {
 
 
     public static Integer test() {
-        int count = 0;
-        Scanner scanner = new Scanner(System.in);
-        String n = scanner.nextLine();
-        boolean flag = true;
-        int size = 0;
-        for(int i = 0; i < 2*(Integer.parseInt(n)); i++) {
-            System.out.println(i);
-            String next = scanner.nextLine();
-            System.out.println(next);
-            if (next.startsWith("remove")) {
-                if (size > 0) {
-                    size--;
-                }
-                if (!flag) {
-                    System.out.println("调整");
-                    count++;
-                    flag = true;
-                }
-            } else {
-                if(next.startsWith("head")) {
-                    if (size > 0) {
-                        flag = false;
-                    }
-                }
-                size++;
-            }
-        }
-        return count;
+        return 0;
     }
 
 }

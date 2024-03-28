@@ -31,25 +31,7 @@ public class Test09 {
     }
 
     public static String test(String[] array) {
-        Arrays.sort(array);
-        Set<String> password = new TreeSet<>();
-        for (String wordStr : array) {
-            if (wordStr.length() == 1) {
-                password.add(wordStr);
-            } else {
-                if(password.contains(wordStr.substring(0, wordStr.length() - 1))) {
-                    password.add(wordStr);
-                }
-            }
-        }
-        List<String> passwordList = password.stream().sorted((word1, word2) -> {
-            if (word1.length() != word2.length()) {
-                return word2.length() - word1.length();
-            } else {
-                return word2.compareTo(word1);
-            }
-        }).toList();
-        return passwordList.get(0);
+        return "";
     }
 
 

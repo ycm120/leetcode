@@ -70,54 +70,7 @@ public class Test22 {
      *
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String line1 = scanner.nextLine();
-        String[] arrays1 = line1.split(" ");
-        int voucher1Num = Integer.parseInt(arrays1[0]);
-        int voucher2Num = Integer.parseInt(arrays1[1]);
-        int voucher3Num = Integer.parseInt(arrays1[2]);
-        String line2 = scanner.nextLine();
-        int peopleNum = Integer.parseInt(line2);
-        for(int i = 0; i < peopleNum; i++) {
-            String line = scanner.nextLine();
-            int money = Integer.parseInt(line);
-            int money1 = money;
-            int voucher1Use = 0;
-            while(money1 >= 100 && voucher1Use < voucher1Num) {
-                money1 = money1 - (money1 / 100) * 10;
-                voucher1Use++;
-            }
-            int minUse = voucher1Use + voucher3Num;
-            int minMoney = money1 - voucher3Num * 5;
-            if (voucher2Num < 1) {
-                System.out.println(minUse + " " + minMoney);
-                continue;
-            }
-            int voucherUse2 = voucher1Use + 1;
 
-            int moneyUse2 = money1 * 92 / 100;
-            if ((minMoney == moneyUse2 && voucherUse2 < minUse) || minMoney > moneyUse2) {
-                minMoney = moneyUse2;
-                minUse = voucherUse2;
-            }
-
-            int money3 = money * 92 / 100;
-            int voucher1Use3 = Math.min(money3 / 100, voucher1Num);
-            int moneyUse3 = money3 - voucher1Use3 * 10;
-            int voucherUse3 = 1 + voucher1Use3;
-            if ((minMoney == moneyUse3 && voucherUse3 < minUse) || minMoney > moneyUse3) {
-                minMoney = moneyUse3;
-                minUse = voucherUse3;
-            }
-            int voucherUse4 = 1 + voucher3Num;
-            int moneyUse4 = money3 - voucher3Num * 5;
-
-            if ((minMoney == moneyUse4 && voucherUse4 < minUse) || minMoney > moneyUse4) {
-                minMoney = moneyUse4;
-                minUse = voucherUse4;
-            }
-            System.out.println(minMoney + " " + minUse);
-        }
     }
 
 }

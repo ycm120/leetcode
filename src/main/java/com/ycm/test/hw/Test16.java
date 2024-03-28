@@ -53,34 +53,7 @@ public class Test16 {
      *
      */
     public static void main(String[] args) {
-        int[] array1 = new int[]{1, 2, 1, 2};
-        int[] array2 = new int[]{2, 4, 2};
-        Arrays.sort(array1);
-        Arrays.sort(array2);
-        int number = 0;
-        int lastindex = 0;
-        for(int i = 0; i < array1.length; i++) {
-            int number1 = array1[i];
-            System.out.println("number:" + number1);
-            int sames = 1;
-            while(i < array1.length - 1 && number1 == array1[i + 1]) {
-                i++;
-                sames++;
-            }
-            int sames2 = 0;
-            for(int j = lastindex; j < array2.length; j++) {
-                int number2 = array2[j];
-                System.out.println(number2);
-                lastindex = j;
-                if(number2 == number1) {
-                    sames2++;
-                } else if (number2 > number1) {
-                    break;
-                }
-            }
-            number += sames * sames2;
-        }
-        System.out.println(number);
+
     }
 
 

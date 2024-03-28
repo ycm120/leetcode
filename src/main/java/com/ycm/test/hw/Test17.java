@@ -68,49 +68,7 @@ public class Test17 {
      * 原文链接：https://blog.csdn.net/qq_33183456/article/details/130931191
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = Integer.parseInt(scanner.nextLine());
-        Map<String, List<PrintTask>> map = new HashMap<>();
 
-        int[] sortArray = new int[6];
-        int inIndex = 0;
-        for(int i = 0; i < n; i++) {
-
-            String line = scanner.nextLine();
-            String[] arrays = line.split(" ");
-            int printNo = Integer.parseInt(arrays[1]);
-            if ("IN".equals(arrays[0])) {
-                sortArray[printNo] = 0;
-                inIndex++;
-                List<PrintTask> list = map.getOrDefault(arrays[1], new ArrayList<>());
-                list.add(new PrintTask(Integer.parseInt(arrays[2]), inIndex));
-                map.put(arrays[1], list);
-            } else {
-                List<PrintTask> list = map.get(arrays[1]);
-                if (null == list || list.isEmpty()) {
-                    System.out.println("NULL");
-                } else {
-                    if (sortArray[printNo] == 0) {
-                        System.out.println("排序" + printNo);
-                        list.sort((task1, task2) -> {
-                            if (task2.value != task1.value) {
-                                return task2.value - task1.value;
-                            } else {
-                                return task1.index - task2.index;
-                            }
-                        });
-                        sortArray[printNo] = 1;
-                    }
-
-
-                    System.out.println(list.get(0).index);
-                    list.remove(0);
-                    map.put(arrays[1], list);
-                }
-            }
-
-
-        }
     }
 
     public static class PrintTask {

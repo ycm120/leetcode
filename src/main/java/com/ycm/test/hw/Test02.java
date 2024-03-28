@@ -54,30 +54,7 @@ public class Test02 {
      * @return
      */
     public static String test(String input) {
-        List<String> list = new ArrayList<>();
-        Map<String, Integer> map = new HashMap<>();
-        String[] arrays1 = input.split(" ");
-        for(String str : arrays1) {
-            char[] chars1 = str.toCharArray();
-            Arrays.sort(chars1);
-            str = new String(chars1);
-            list.add(str);
-            map.put(str, map.getOrDefault(str, 0) + 1);
-        }
-        list.sort((str1, str2) -> {
-            if (!map.get(str1).equals(map.get(str2))) {
-                return map.get(str2) - map.get(str1);
-            } else if (str1.length() != str2.length()) {
-                return str1.length() - str2.length();
-            } else {
-                return str1.compareTo(str2);
-            }
-        });
-        StringBuilder sb = new StringBuilder();
-        for(String str : list) {
-            sb.append(str).append(" ");
-        }
-        return sb.toString().trim();
+        return "";
     }
 
 

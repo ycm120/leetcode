@@ -42,36 +42,7 @@ public class Test05 {
 
 
     public static String test() {
-        Scanner scanner = new Scanner(System.in);
-        String line1 = scanner.nextLine();
-        String[] arrays1 = line1.split(" ");
-        String head = arrays1[0];
-        Integer nodeNumber = Integer.parseInt(arrays1[1]);
-        List<Node> nodeList = new ArrayList<>();
-        Map<String, Node> map = new HashMap<>();
-        for(int i = 0; i < nodeNumber; i++) {
-            String line = scanner.nextLine();
-            String[] array = line.split(" ");
-            map.put(array[0], new Node(array[0], array[1], array[2]));
-        }
-        Node firstNode = map.get(head);
-        Node tempNode = firstNode;
-        while (tempNode != null) {
-            nodeList.add(tempNode);
-            String next = tempNode.next;
-            if("-1".equals(next)) {
-                break;
-            }
-            tempNode = map.get(next);
-        }
-        Integer nodeSize = nodeList.size();
-        if (nodeSize == 1) {
-            return nodeList.get(0).value;
-        } else if (nodeSize % 2 == 0) {
-            return nodeList.get(nodeSize / 2).value;
-        } else {
-            return nodeList.get(nodeSize / 2).value;
-        }
+        return "";
     }
 
 

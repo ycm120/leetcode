@@ -29,42 +29,9 @@ public class Test08 {
      */
     public static void main(String[] args) {
         char[][] arrays = new char[][]{{'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'}, {'j', 'k', 't'}, {'m', 'n', 'o'}, {'p', 'q', 'r'}, {'s', 't'}, {'u', 'v'}, {'w', 'x'}, {'z', 'y'}};
-        String number = "78";
-        String str = "ux";
-        char[] chars = str.toCharArray();
-        char[] array1 = number.toCharArray();
-        List<StringBuilder> list = new ArrayList<>();
-        for (int i = 0; i < array1.length; i++) {
-            char[] chars1 = arrays[array1[i] - '0'];
-            if (i == 0) {
-                for(char c : chars1) {
-                    list.add(new StringBuilder(c + ""));
-                }
-            } else {
-                List<StringBuilder> sbList = new ArrayList<>();
-                for(char c : chars1) {
-                    for(StringBuilder sb : list) {
-                        sbList.add(new StringBuilder(sb).append(c));
-                    }
-                }
-                list = sbList;
-            }
-        }
-        for(StringBuilder sb : list) {
-            if(!check(sb.toString(), chars)) {
-                System.out.println(sb.toString() + " ");
-            }
-        }
+
     }
 
-    public static boolean check(String str, char[] arrays) {
-        char[] charArray = str.toCharArray();
-        for(char c : arrays) {
-            if(!str.contains(c + "")) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 
 }

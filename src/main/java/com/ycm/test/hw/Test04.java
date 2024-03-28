@@ -41,42 +41,11 @@ public class Test04 {
     private static Integer sum = 0;
 
     public static Integer test() {
-        Scanner scanner = new Scanner(System.in);
-        String line1 = scanner.nextLine();
-        String[] arrats1 = line1.split(" ");
-        int number = Integer.parseInt(arrats1[0]);
-        for(int i = 0; i < Integer.parseInt(arrats1[1]); i++) {
-            String line = scanner.nextLine();
-            String[] arrays = line.split(" ");
-            nodeList.add(new LineNode(Integer.parseInt(arrays[0]) - 1, Integer.parseInt(arrays[1]) - 1));
-        }
-        colors = new int[number];
-        color(0);
-        return sum;
+        return 0;
     }
 
     public static void color(Integer index) {
-        if (index < nodeList.size()) {
-            if (colors[index] == 0) {
-                colors[index] = 1;
-                color(index + 1);
-                colors[index] = 2;
-                for(LineNode lineNode : nodeList) {
-                    if(index.equals(lineNode.fromIndex)) {
-                        colors[lineNode.toIndex] = 1;
-                    }
-                    if (index.equals(lineNode.toIndex)) {
-                        colors[lineNode.fromIndex] = 1;
-                    }
-                }
-                color(index + 1);
-            } else {
-                color(index + 1);
-            }
-            colors[index] = 0;
-        } else {
-            sum++;
-        }
+
     }
 
 

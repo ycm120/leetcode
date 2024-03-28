@@ -40,22 +40,7 @@ public class Test03 {
      * @return
      */
     public static Integer test(Integer m, Integer n, Integer[] array) {
-        Arrays.sort(array);
-        int partyNum = 0;
-        int left = 0;
-        int right = array.length - 1;
-        while (left < right) {
-            Integer m1 = array[left];
-            Integer m2 = array[right];
-            if ((m1 + m2) <= m) {
-                partyNum++;
-                left++;
-                right--;
-            } else {
-                right--;
-            }
-        }
-        return partyNum + (n - partyNum * 2);
+        return 0;
     }
 
 

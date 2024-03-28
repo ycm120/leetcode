@@ -52,28 +52,7 @@ public class Test06 {
 
 
     public static Integer test() {
-        Scanner scanner = new Scanner(System.in);
-        String line = scanner.nextLine();
-        String[] arrays = line.split(" ");
-        int second = scanner.nextInt();
-        int left = 0;
-        int right = second - 1;
-        int[] array = new int[3];
-        for(int i = 0; i < right; i++) {
-            array[Integer.parseInt(arrays[i])]++;
-        }
-        int max = getMax(array);
-        right++;
-        while(right < arrays.length) {
-            int temp = Integer.parseInt(arrays[right]);
-            int temp2 = Integer.parseInt(arrays[left]);
-            array[temp]++;
-            array[temp2]--;
-            max = Math.max(max, getMax(array));
-            left++;
-            right++;
-        }
-        return max;
+       return 0;
     }
     public static Integer getMax(int[] array) {
         return Math.max(array[0], Math.max(array[1], array[2]));

@@ -36,9 +36,54 @@ public class Test01 {
      * @return
      */
     private static Integer test(String input) {
-        return 0;
+        char[] arrays = input.toCharArray();
+        Map<Character, Integer> map = new HashMap<>();
+        char[] charArray = new char[] {'W', 'A', 'S', 'D'};
+        for (char c : charArray) {
+            map.put(c, 0);
+        }
+        for(char c : arrays) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        int target = arrays.length / 4;
+        if(map.get('W') == target && map.get('A') == target && map.get('S') == target && map.get('D') == target) {
+            return 0;
+        }
+        int left = 0;
+        int right = 0;
+        int minLength = arrays.length;
+        map.put(arrays[0], map.getOrDefault(arrays[0], 0) - 1);
+        while (right < arrays.length && left <= right) {
+            char c = arrays[right];
+            int needLength = needLength(map);
+            int nowLength = right - left + 1;
+            int length = nowLength - needLength;
+            if (length >= 0 && length % 4 == 0) {
+                if (nowLength == 1) {
+                    return 1;
+                }
+                minLength = Math.min(minLength, nowLength);
+                // left++
+                map.put(arrays[left], map.getOrDefault(arrays[left], 0) + 1);
+                left++;
+            } else {
+                right++;
+                if (right < arrays.length) {
+                    map.put(arrays[right], map.getOrDefault(arrays[right], 0) - 1);
+                }
+            }
+        }
+        return minLength;
     }
 
+    private static int needLength(Map<Character, Integer> map) {
+        int maxNum = 0;
+        for(Integer value : map.values()) {
+            maxNum = Math.max(maxNum, value);
+        }
+        return maxNum * 4 - map.getOrDefault('W', 0) - map.getOrDefault('A', 0) - map.getOrDefault('S', 0) - map.getOrDefault('D', 0);
+    }
 
 
 }

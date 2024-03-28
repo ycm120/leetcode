@@ -1,5 +1,9 @@
 package com.ycm.test.hw;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  *
@@ -19,9 +23,59 @@ public class Test13 {
      * 输入：
      * 7
      * 4 3 2 3 5 2 1
-     * 输出：
-     * 5
-     * 说明：可以等分的情况有：
-     * 4个子集（5），（1，4），（2，3），（2，3）2个子集（5，1，4），（2，3，2，3）但最小的为5。
+     * 输出： 5
+     * 说明：可以等分的情况有： 4个子集（5），（1，4），（2，3），（2，3）2个子集（5，1，4），（2，3，2，3）但最小的为5。
      */
+    public static void main(String[] args) {
+        String input="1 2 3 4 5 6 7";
+        String[] arrays = input.split(" ");
+        int length = arrays.length;
+        int sum = 0;
+        Integer[] arrayNum = new Integer[length];
+        int maxNum = 0;
+        for(int i = 0; i < length; i++) {
+            arrayNum[i] = Integer.parseInt(arrays[i]);
+            sum += arrayNum[i];
+            maxNum = Math.max(maxNum, arrayNum[i]);
+        }
+        System.out.println(maxNum);
+        List<Integer> groupList = new ArrayList<>();
+        for (int i = length; i > 1; i--) {
+            if (sum % i == 0 && maxNum <= sum / i) {
+                groupList.add(i);
+            }
+        }
+        if(0 == groupList.size()) {
+            System.out.println(sum);
+            return;
+        }
+        Arrays.sort(arrayNum, (num1, num2) -> num2 - num1);
+        for (Integer group : groupList) {
+            if (canGroup(group, arrayNum, sum)) {
+                System.out.println(sum/ group);
+                return;
+            }
+        }
+    }
+    public static boolean canGroup(int groupNum, Integer[] arrayNum, int sum){
+        int target = sum / groupNum;
+        int[] sumArray = new int[groupNum];
+        for(Integer num : arrayNum) {
+            for (int i = 0; i < groupNum; i++) {
+                if (sumArray[i] + num <= target) {
+                    sumArray[i] = sumArray[i] + num;
+                    break;
+                }
+            }
+            System.out.println(Arrays.toString(sumArray));
+        }
+        for (int oneSum : sumArray) {
+            if (oneSum != target) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

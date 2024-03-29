@@ -27,10 +27,53 @@ public class Test08 {
      * 示例：输入：78 UX 输出：UW VX VW
      * 说明：ux完全包含屏蔽字符串ux，因此剔除
      */
+    private static char[][] arrays = new char[][]{{'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'}, {'j', 'k', 't'}, {'m', 'n', 'o'}, {'p', 'q', 'r'}, {'s', 't'}, {'u', 'v'}, {'w', 'x'}, {'z', 'y'}};
     public static void main(String[] args) {
-        char[][] arrays = new char[][]{{'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'}, {'j', 'k', 't'}, {'m', 'n', 'o'}, {'p', 'q', 'r'}, {'s', 't'}, {'u', 'v'}, {'w', 'x'}, {'z', 'y'}};
-
+        test("78", "ux");
     }
+
+
+
+
+
+
+    public static void test(String number, String str) {
+        char[] numsArray = number.toCharArray();
+        List<StringBuilder> sbList = new ArrayList<>();
+        for(int i = 0; i < numsArray.length; i++) {
+            char[] charArray = arrays[numsArray[i] - '0'];
+            if (i == 0) {
+                for (char c : charArray) {
+                    sbList.add(new StringBuilder(c + ""));
+                }
+            } else {
+                List<StringBuilder> tempList = new ArrayList<>();
+                for (StringBuilder sb : sbList) {
+                    for(char c : charArray) {
+                        tempList.add(new StringBuilder().append(sb.toString()).append(c));
+                    }
+                }
+                sbList = tempList;
+            }
+        }
+        char[] charArray = str.toCharArray();
+        for(StringBuilder sb : sbList) {
+            if (check(charArray, sb.toString())) {
+                System.out.println(sb + " ");
+            }
+        }
+    }
+
+    public static boolean check(char[] charArray, String str) {
+        for (char c : charArray) {
+            if (!str.contains(c + "")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
 
 

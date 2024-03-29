@@ -34,8 +34,7 @@ public class Test07 {
 
 
 
-        Integer number3 = test(20, 30);
-        System.out.println(number3);
+
     }
 
 
@@ -46,7 +45,13 @@ public class Test07 {
 
 
     public static Integer test(Integer start, Integer end) {
-        return 0;
+        int sum = 0;
+        for(int i = start; i <= end; i++) {
+            if (!Integer.toBinaryString(i).contains("101")) {
+                sum++;
+            }
+        }
+        return sum;
     }
 
 

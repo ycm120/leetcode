@@ -44,17 +44,36 @@ public class Test02 {
 
 
     /**
-     * 1：题目还是比较简单的，直接两步排序即可，需要细心的地方有两个
-     * A：就是排序是降序还是升序。
-     * B：输出的时候要输出单词原有的个数。
-     * 字符按照字典表排序 Arrays.sort();
-     * 字符串按照字典白哦排序，利用自定义排序 compareTo
      *
      * @param input
      * @return
      */
     public static String test(String input) {
-        return "";
+        String[] arrays = input.split(" ");
+        List<String> list = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        Map<String, String> map2 = new HashMap<>();
+        for(String str : arrays) {
+            String sortedStr = map2.get(str);
+            if (null == sortedStr) {
+                char[] charArray = str.toCharArray();
+                Arrays.sort(charArray);
+                sortedStr = new String(charArray);
+                map2.put(str, sortedStr);
+            }
+            map.put(sortedStr, map.getOrDefault(sortedStr, 0) + 1);
+            list.add(sortedStr);
+        }
+        list.sort((str1, str2) -> {
+            if (!map.get(str1).equals(map.get(str2))) {
+                return map.get(str2) - map.get(str1);
+            } else if(str1.length() != str2.length()) {
+                return str1.length() - str2.length();
+            } else {
+                return str1.compareTo(str2);
+            }
+        });
+        return String.join(" ", list);
     }
 
 

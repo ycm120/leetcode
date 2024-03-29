@@ -24,23 +24,34 @@ public class Test03 {
      * 输出
      * 3
      */
-
     public static void main(String[] args) {
-        Integer test = test(3, 7, new Integer[]{3, 2, 2, 1, 3, 2, 1});
+        Integer test = test(3, 4, new Integer[]{3, 2, 2, 1});
         System.out.println(test);
     }
 
-    /**
-     * 最多需要车辆为人数n
-     * 然后找出满足一个车辆的2个人组合 n-组合数 排序
-     *
-     * @param m
-     * @param n
-     * @param array
-     * @return
-     */
+
+
+
+
+
+
+
+
     public static Integer test(Integer m, Integer n, Integer[] array) {
-        return 0;
+        Arrays.sort(array);
+        int left = 0;
+        int right = array.length - 1;
+        int partyNum = 0;
+        while (left < right) {
+            if (array[left] + array[right] <= m) {
+                partyNum++;
+                left++;
+                right--;
+            } else {
+                right--;
+            }
+        }
+        return n - partyNum;
     }
 
 

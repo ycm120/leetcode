@@ -1,5 +1,6 @@
 package com.ycm.test.hw;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -31,7 +32,25 @@ public class Test09 {
     }
 
     public static String test(String[] array) {
-        return "";
+        Arrays.sort(array);
+        List<String> list = new ArrayList<>();
+        for(String str : array) {
+            if (str.length() == 1) {
+                list.add(str);
+            } else {
+                if (list.contains(str.substring(0, str.length() - 1))) {
+                    list.add(str);
+                }
+            }
+        }
+        list.sort((str1, str2) -> {
+           if (str1.length() != str2.length()) {
+               return str2.length() - str1.length();
+           } else {
+               return str2.compareTo(str1);
+           }
+        });
+        return list.get(0);
     }
 
 

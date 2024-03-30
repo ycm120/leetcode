@@ -54,7 +54,30 @@ public class Test10 {
 
 
     public static Integer test() {
-        return 0;
+        Scanner scanner = new Scanner(System.in);
+        String line1 = scanner.nextLine();
+        int count = Integer.parseInt(line1);
+        boolean ordered = true;
+        int size = 0;
+        int sortNum = 0;
+        for (int i = 0; i < count * 2; i++) {
+            String line = scanner.nextLine();
+            if(line.startsWith("head")) {
+                if (size > 0) {
+                    ordered = false;
+                }
+                size++;
+            } else if(line.startsWith("tail")) {
+                size++;
+            } else {
+                if (!ordered && size > 0) {
+                    sortNum++;
+                    size--;
+                    ordered = true;
+                }
+            }
+        }
+        return sortNum;
     }
 
 }

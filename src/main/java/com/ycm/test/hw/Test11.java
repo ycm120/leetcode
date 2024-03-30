@@ -1,5 +1,8 @@
 package com.ycm.test.hw;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
  *
  *
@@ -78,4 +81,26 @@ public class Test11 {
      * 0 <= startTime < endTime <= 50000
      * 1 <= parallelism <= 100
      */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String line1 = scanner.nextLine();
+        int taskNum = Integer.parseInt(line1);
+        int[] arrays = new int[50001];
+
+        for(int i = 0; i < taskNum; i++) {
+            String line = scanner.nextLine();
+            String[] taskArray = line.split(" ");
+            int startTime = Integer.parseInt(taskArray[0]);
+            int endTime = Integer.parseInt(taskArray[1]);
+            int count = Integer.parseInt(taskArray[2]);
+            for(int j = startTime; j <= endTime; j++) {
+                arrays[j] += count;
+            }
+        }
+        Arrays.sort(arrays);
+        int maxCount = arrays[50000];
+        System.out.println(maxCount);
+    }
+
+
 }

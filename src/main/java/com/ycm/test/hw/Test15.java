@@ -57,7 +57,66 @@ public class Test15 {
      *
      */
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String line1 = scanner.nextLine();
+        int length = Integer.parseInt(line1);
+        List<Line> lineList = new ArrayList<>();
+        for(int i = 0; i < length; i++) {
+            String line = scanner.nextLine();
+            String[] arrays = line.split(" ");
+            lineList.add(new Line(Integer.parseInt(arrays[0]), Integer.parseInt(arrays[1])));
+        }
+        List<Line> leftList = lineList.stream().sorted((a1, a2) -> a1.left - a2.left).toList();
+        List<Line> rightList = lineList.stream().sorted((a1, a2) -> a2.right - a1.right).toList();
+        int left = leftList.get(0).left;
+        int right = rightList.get(0).right;
+        int leftIndex = 0;
 
+        int rightIndex = 0;
+        int count = 0;
+        while(true) {
+            System.out.println(left + "" + right);
+            Line leftLine = null;
+            Line rightLine = null;
+            int maxRight = 0;
+            int minLeft = right;
+            for(int i = leftIndex; i < length; i++) {
+                Line lineOne = leftList.get(i);
+                if (lineOne.left <= left) {
+                    if (lineOne.right > maxRight) {
+                        maxRight = lineOne.right;
+                        leftLine = lineOne;
+                    }
+                } else {
+                    leftIndex = i;
+                    break;
+                }
+            }
+            for(int i = rightIndex; i < length; i++) {
+                Line lineOne = rightList.get(i);
+                if (lineOne.right >= right) {
+                    if (lineOne.left < minLeft) {
+                        minLeft = lineOne.left;
+                        rightLine = lineOne;
+                    }
+                }else {
+                    rightIndex = i;
+                    break;
+                }
+            }
+            if (leftLine.left >= rightLine.left && leftLine.right <= rightLine.right) {
+                count++;
+                break;
+            }
+            if (leftLine.right >= rightLine.left) {
+                count += 2;
+                break;
+            }
+            count += 2;
+            left = leftLine.right;
+            right = rightLine.left;
+        }
+        System.out.println(count);
     }
 
 

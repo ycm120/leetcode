@@ -46,13 +46,78 @@ public class Test12 {
 
 
 
-        String input = "5 3 5";
+        String input = "5 3 3";
         String[] arrays = input.split(" ");
         int count = test(arrays);
         System.out.println(count);
     }
 
     private static int test(String[] arrays) {
-        return 0;
+        int count1 = Integer.parseInt(arrays[0]);
+        int count2 = Integer.parseInt(arrays[1]);
+        int count = Integer.parseInt(arrays[2]);
+        if (count2 >= count1) {
+            return 0;
+        }
+        if (count >= count1 + count2) {
+            return 1;
+        }
+        if (count >= count1) {
+            return 2;
+        }
+        int[] arrays2 = new int[count1 + count2];
+        int i = 0;
+        while(count1 > 0 || count2 > 0) {
+            if (count1 - count2 > 1) {
+                arrays2[i] = 1;
+                count1--;
+                i++;
+                continue;
+            }
+            if (count2 > 0) {
+                arrays2[i] = 2;
+                count2--;
+                i++;
+            } else {
+                arrays2[i] = 1;
+                count1--;
+                i++;
+            }
+        }
+        int right1 = 0;
+        int right2 = 0;
+        int left = 0;
+        int right = count;
+        int solution = 0;
+        int length = arrays2.length;
+        while(left < length) {
+            int tempCount1 = 0;
+            int tempCount2 = 0;
+            for (int j = left; j < right; j++) {
+                if (j >= length) {
+                    break;
+                }
+                if(arrays2[j] == 1) {
+                    tempCount1++;
+                } else if(arrays2[j] == 2) {
+                    tempCount2++;
+                }
+            }
+            if (right1 + tempCount1 > right2 + tempCount2) {
+                solution++;
+                right1 += tempCount1;
+                right2 += tempCount2;
+                left += tempCount1;
+                left += tempCount2;
+                right = left + count;
+            } else {
+                right--;
+                if (left >= right) {
+                    return 0;
+                }
+            }
+
+        }
+        return solution;
     }
 }

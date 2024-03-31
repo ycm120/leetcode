@@ -53,7 +53,33 @@ public class Test16 {
      *
      */
     public static void main(String[] args) {
-
+        int[] arrays1 = new int[]{1, 2, 3, 4};
+        int[] arrays2 = new int[]{1};
+        Arrays.sort(arrays1);
+        Arrays.sort(arrays2);
+        int count = 0;
+        int index = 0;
+        for (int i = 0; i < arrays1.length; i++) {
+            int num = arrays1[i];
+            int count1 = 1;
+            while(i + 1 < arrays1.length && arrays1[i + 1] == num) {
+                i++;
+                count1++;
+            }
+            int count2 = 0;
+            for(int j = index; j < arrays2.length; j++) {
+                int num2 = arrays2[j];
+                if (num2 > num) {
+                    index = j;
+                    break;
+                }
+                if (num2 == num) {
+                    count2++;
+                }
+            }
+            count += count1 * count2;
+        }
+        System.out.println(count);
     }
 
 

@@ -70,7 +70,89 @@ public class Test22 {
      *
      */
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String line1 = scanner.nextLine();
+        String[] arrays = line1.split(" ");
+        int m = Integer.parseInt(arrays[0]);
+        int n = Integer.parseInt(arrays[1]);
+        int k = Integer.parseInt(arrays[2]);
+        int x = scanner.nextInt();
+        for(int i = 0; i < x; i++) {
+            int money = scanner.nextInt();
+            int minMoney = money;
+            int minCount = m + n + k;
+            int moneym = money;
+            int countm = 0;
+            while(countm < m && moneym >= 100) {
+                countm++;
+                moneym = moneym - moneym / 100 * 10;
+            }
+            int money1 = moneym;
+            int count1 = countm;
+            if(n > 0) {
+                count1++;
+                money1 = money1 * 92 / 100;
+            }
+            if (money1 == minMoney) {
+                minCount = Math.min(minCount, count1);
+            } else if(money1 < minMoney) {
+                minMoney = money1;
+                minCount = count1;
+            }
+            int money2 = moneym;
+            int count2 = countm;
+            if (k > 0) {
+                count2 += k;
+                money2 = money2 - 5 * k;
+            }
+            if (money2 == minMoney) {
+                minCount = Math.min(minCount, count2);
+            } else if(money2 < minMoney) {
+                minMoney = money2;
+                minCount = count2;
+            }
+            int moneyn = money;
+            int countn = 0;
+            if (n > 0) {
+                countn = 1;
+                moneyn = moneyn * 92 / 100;
+            }
+            int money3 = moneyn;
+            int count3 = countn;
+            int countm2 = 0;
+            while(countm2 < m && money3 >= 100) {
+                countm2++;
+                money3 = money3 - money3 / 100 * 10;
+            }
+            count3 += countm2;
+            if (money3 == minMoney) {
+                minCount = Math.min(minCount, count3);
+            } else if(money3 < minMoney) {
+                minMoney = money3;
+                minCount = count3;
+            }
 
+            int money4 = moneyn;
+            int count4 = countn;
+            if (k > 0) {
+                count4 += k;
+                money4 = money4 - 5 * k;
+            }
+
+
+
+
+
+
+            if (money4 == minMoney) {
+                minCount = Math.min(minCount, count4);
+            } else if(money4 < minMoney) {
+                minMoney = money4;
+                minCount = count4;
+            }
+            System.out.println(minMoney + " " + minCount);
+
+        }
     }
 
 }

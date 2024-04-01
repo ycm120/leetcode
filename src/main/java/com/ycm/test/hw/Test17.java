@@ -68,7 +68,43 @@ public class Test17 {
      * 原文链接：https://blog.csdn.net/qq_33183456/article/details/130931191
      */
     public static void main(String[] args) {
-
+        Scanner scanner = new Scanner(System.in);
+        String line1 = scanner.nextLine();
+        int count = Integer.parseInt(line1);
+        Map<String, List<PrintTask>> map = new HashMap<>();
+        Map<String, Boolean> map2 = new HashMap<>();
+        int index = 1;
+        for(int i = 0; i < count; i++) {
+            String line = scanner.nextLine();
+            String[] arrays = line.split(" ");
+            if ("IN".equals(arrays[0])) {
+                List<PrintTask> list = map.getOrDefault(arrays[1], new ArrayList<>());
+                list.add(new PrintTask(Integer.parseInt(arrays[2]), index));
+                index++;
+                map.put(arrays[1], list);
+                map2.put(arrays[1], false);
+            } else if("OUT".equals(arrays[0])) {
+                List<PrintTask> list = map.get(arrays[1]);
+                if (null == list || list.isEmpty()) {
+                    System.out.println("NULL");
+                } else {
+                    boolean ordered = map2.getOrDefault(arrays[1], false);
+                    if (!ordered) {
+                        list.sort((task1, task2) -> {
+                           if (task1.value != task2.value) {
+                               return task2.value - task1.value;
+                           } else {
+                               return task1.index - task2.index;
+                           }
+                        });
+                        map2.put(arrays[1], true);
+                    }
+                    System.out.println(list.get(0).index);
+                    list.remove(0);
+                    map.put(arrays[1], list);
+                }
+            }
+        }
     }
 
     public static class PrintTask {

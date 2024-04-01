@@ -3,6 +3,7 @@ package com.ycm.test.hw;
 import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -63,10 +64,109 @@ public class Test18 {
      *
      */
     public static void main(String[] args) {
+        Integer[] arrays = new Integer[]{0, 2, 1, 4, 5, 6, 7};
+        int needNum = 2;
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+        for(int no : arrays) {
+            if(no <= 3) {
+                list1.add(no);
+            } else {
+                list2.add(no);
+            }
+        }
 
+        int size1 = list1.size();
+        int size2 = list2.size();
+
+        List<Integer[]> list = new ArrayList<>();
+        if(needNum == 8) {
+            if(arrays.length == 8) {
+                list.add(arrays);
+            }
+        } else if(needNum == 1) {
+            if (size1 == 1 || size2 == 1) {
+                if (size1 == 1) {
+                    list.add(list1.toArray(new Integer[0]));
+                }
+                if (size2 == 1) {
+                    list.add(list2.toArray(new Integer[0]));
+                }
+            } else if(size1 == 3 || size2 == 3) {
+                if (size1 == 3) {
+                    addToList1(list1, list);
+                }
+                if (size2 == 3) {
+                    addToList1(list2, list);
+                }
+            } else if(size1 == 2 || size2 == 2) {
+                if (size1 == 2) {
+                    addToList1(list1, list);
+                }
+                if (size2 == 2) {
+                    addToList1(list2, list);
+                }
+            } else if(size1 == 4 || size2 == 4) {
+                if (size1 == 4) {
+                    addToList1(list1, list);
+                }
+                if (size2 == 4) {
+                    addToList1(list2, list);
+                }
+            }
+        } else if(needNum == 2) {
+            if (size1 == 2 || size2 == 2) {
+                if (size1 == 2) {
+                    list.add(list1.toArray(new Integer[0]));
+                }
+                if (size2 == 2) {
+                    list.add(list2.toArray(new Integer[0]));
+                }
+            } else if(size1 == 4 || size2 == 4) {
+                if (size1 == 4) {
+                    addToList2(list1, list);
+                }
+                if (size2 == 4) {
+                    addToList2(list2, list);
+                }
+            } else if(size1 == 3 || size2 == 3) {
+                if (size1 == 3) {
+                    addToList2(list1, list);
+                }
+                if (size2 == 3) {
+                    addToList2(list2, list);
+                }
+            }
+        } else if(needNum == 4) {
+            if (size1 == 4) {
+                list.add(list1.toArray(new Integer[0]));
+            }
+            if (size2 == 4) {
+                list.add(list2.toArray(new Integer[0]));
+            }
+        }
+        System.out.println(JSON.toJSONString(list));
     }
 
+    private static void addToList2(List<Integer> list, List<Integer[]> allList) {
+        int size = list.size();
+        for(int i = 0; i < size; i++) {
+            for(int j = i + 1; j < size; j++) {
+                Integer[] arrays = new Integer[2];
+                arrays[0] = list.get(i);
+                arrays[1] = list.get(j);
+                allList.add(arrays);
+            }
+        }
+    }
 
+    private static void addToList1(List<Integer> list, List<Integer[]> allList) {
+        for(Integer no : list) {
+            Integer[] arrays = new Integer[1];
+            arrays[0] = no;
+            allList.add(arrays);
+        }
+    }
 
 
 }

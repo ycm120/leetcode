@@ -70,9 +70,8 @@ public class Test01 {
         List<Integer> result = new ArrayList<>();
         Deque<TreeNode> stack = new ArrayDeque<>();
         while(root != null || !stack.isEmpty()) {
-            while(root.left != null) {
+            while(root!= null) {
                 stack.push(root);
-                stack.push(root.left);
                 root = root.left;
             }
             root = stack.pop();

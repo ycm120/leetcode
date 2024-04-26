@@ -1,4 +1,4 @@
-package com.ycm.test.hw.binarytree;
+package com.ycm.code.binarytree;
 
 import com.alibaba.fastjson.JSON;
 

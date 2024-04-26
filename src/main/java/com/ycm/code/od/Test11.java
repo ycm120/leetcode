@@ -1,4 +1,4 @@
-package com.ycm.test.hw;
+package com.ycm.code.od;
 
 import java.util.Arrays;
 import java.util.Scanner;

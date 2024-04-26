@@ -10,7 +10,7 @@ import java.util.List;
  *
  * 本题是一道经典的「拓扑排序」问题
  * https://leetcode.cn/problems/course-schedule/description/?envType=study-plan-v2&envId=top-100-liked
- * https://leetcode.cn/problems/course-schedule-ii/
+ * https://leetcode.cn/problems/course-schedule-ii/ 记录么次选修课程就行
  * @author: rik.yang
  * @date: 2024/4/26 10:26
  */
